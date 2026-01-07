@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Donation{% endblock %}
+
+{% block body %}
+    <h1>New Donation</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="d-flex gap-3">
+        <button class="btn btn-success mt-3">Create</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

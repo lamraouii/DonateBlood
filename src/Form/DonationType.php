@@ -21,11 +21,11 @@ class DonationType extends AbstractType
             ->add('status')
             ->add('donorProfile', EntityType::class, [
                 'class' => DonorProfile::class,
-                'choice_label' => 'id',
+                'choice_label' => 'user.email',
             ])
             ->add('bloodCenter', EntityType::class, [
                 'class' => BloodCenter::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }

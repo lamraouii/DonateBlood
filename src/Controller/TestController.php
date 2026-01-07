@@ -82,28 +82,28 @@ final class TestController extends AbstractController
 //    }
 
     // our donations
-    #[Route('/test/donations', name :'test_donations')]
-    public function donations(DonationRepository $repo): Response
-    {
-        $donations = $repo->findAll();
-        $data = [];
-        foreach ($donations as $donation) {
-            $data[] = [
-                'id' => $donation->getId(),
-                'donorEmail' => $donation->getDonorProfile()->getUser()->getEmail(),
-                'bloodType' => $donation->getBloodType(),
-                'quantity' => $donation->getQuantity(),
-                'donatedAt' => $donation->getDonatedAt()->format('Y-m-d H:i:s'),
-                'status' => $donation->getStatus(),
-                'bloodCenter' => $donation->getBloodCenter()->getName(),
-            ];
-        }
-        return $this->render('Donations/index.html.twig', [
-            'donations' => $data
-        ]);
-
-//        return $this->json($data);
-    }
+//    #[Route('/test/donations', name :'test_donations')]
+//    public function donations(DonationRepository $repo): Response
+//    {
+//        $donations = $repo->findAll();
+//        $data = [];
+//        foreach ($donations as $donation) {
+//            $data[] = [
+//                'id' => $donation->getId(),
+//                'donorEmail' => $donation->getDonorProfile()->getUser()->getEmail(),
+//                'bloodType' => $donation->getBloodType(),
+//                'quantity' => $donation->getQuantity(),
+//                'donatedAt' => $donation->getDonatedAt()->format('Y-m-d H:i:s'),
+//                'status' => $donation->getStatus(),
+//                'bloodCenter' => $donation->getBloodCenter()->getName(),
+//            ];
+//        }
+//        return $this->render('Donations/index.html.twig', [
+//            'donations' => $data
+//        ]);
+//
+////        return $this->json($data);
+//    }
 
     // ohadu centers
     #[Route('/test/centers', name :'test_centers')]
