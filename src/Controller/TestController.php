@@ -23,7 +23,7 @@ final class TestController extends AbstractController
     #[Route('/test/{success}-{name}', name: 'test.show', requirements: ['name' =>'[a-z]+', 'success'=> '[a-z0-9]+'])]
     public function show(Request $request, string $name, string $success): Response
     {
-        return $this->render('HomeTest/show.html.twig', [
+        return $this->render('landing.html.twig', [
             'name' => $name,
             'success' => $success,
             'demo' => "<h1>lhaj</h1>",

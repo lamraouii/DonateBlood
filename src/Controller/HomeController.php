@@ -12,7 +12,7 @@ class HomeController extends AbstractController {
 
 
 
-    #[Route('/', name : "home")]
+    #[Route('/', name : "landing_page")]
     public function index(): Response
     {
         return new Response('Salam Alikum Lhaj');

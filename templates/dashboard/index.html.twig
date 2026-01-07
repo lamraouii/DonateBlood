@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <h1>Dashboard</h1>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Donors</h5>
+                    <p class="card-text">{{ totalDonors }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Donations</h5>
+                    <p class="card-text">{{ totalDonations }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Blood Stock by Type</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Blood Type</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for stock in bloodStock %}
+            <tr>
+                <td>{{ stock.bloodType }}</td>
+                <td>{{ stock.total }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Donations per Center</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Center</th>
+            <th>Number of Donations</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for d in donationsPerCenter %}
+            <tr>
+                <td>{{ centerMap[d.centerId] ?? 'Unknown' }}</td>
+                <td>{{ d.total }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
