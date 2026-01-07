@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blood Centers{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Blood Centers</h1>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>IsActive</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for center in centers %}
+            <tr>
+                <td>{{ center.id }}</td>
+                <td>{{ center.name }}</td>
+                <td>{{ center.city }}</td>
+                <td>{{ center.address }}</td>
+                <td>{{ center.phone }}</td>
+                <td>
+                    {{ center.isActive }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center">No blood centers found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

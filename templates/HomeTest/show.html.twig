@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <h1>the succes is {{   success }}</h1>
+    <h2>and it's  by <strong>{{ name }}</strong></h2>
+    <table>
+        <thead>
+        <tr>
+            <td>{{ person.smya }}</td>
+            <td>{{ person.la9ab }}</td>
+        </tr>
+        </thead>
+    </table>
+
+
+{{ demo }}
+{#{{ demo | raw}}#}
+{#    to show that html attacks like xss wont work -- unless we do that raw#}
+{% endblock %}
+
+

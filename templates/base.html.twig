@@ -1,0 +1,30 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Donate Blood App{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">Donate Blood</a>
+        <div>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ path('test_users') }}">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('test_donors') }}">Donors</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('test_donations') }}">Donations</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('test_centers') }}">Centers</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
