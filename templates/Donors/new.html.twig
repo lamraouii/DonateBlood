@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Donor{% endblock %}
+
+{% block body %}
+    <h1>New Donor</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="d-flex gap-3">
+    <button class="btn btn-success mt-3">Create</button>
+    <a href="{{ path('users_new') }}" class="btn btn-primary mt-3">Add User</a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -2,25 +2,30 @@
 
 namespace App\Form;
 
+use App\Entity\BloodCenter;
+use App\Entity\Donation;
 use App\Entity\DonorProfile;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DonorProfileType extends AbstractType
+class DonationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('bloodType')
-            ->add('birthdate')
-            ->add('phoneNumber')
-            ->add('cine')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'email',
+            ->add('quantity')
+            ->add('donatedAt')
+            ->add('status')
+            ->add('donorProfile', EntityType::class, [
+                'class' => DonorProfile::class,
+                'choice_label' => 'id',
+            ])
+            ->add('bloodCenter', EntityType::class, [
+                'class' => BloodCenter::class,
+                'choice_label' => 'id',
             ])
         ;
     }
@@ -28,7 +33,7 @@ class DonorProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => DonorProfile::class,
+            'data_class' => Donation::class,
         ]);
     }
 }

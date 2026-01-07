@@ -58,28 +58,28 @@ final class TestController extends AbstractController
 //    }
 
     // our donorss
-    #[Route('/test/donors', name :'test_donors')]
-    public function donors(DonorProfileRepository $repo): Response
-    {
-        $donors = $repo->findAll();
-        $data = [];
-        foreach ($donors as $donor) {
-            $data[] = [
-                'id' => $donor->getId(),
-                'userEmail' => $donor->getUser()->getEmail(),
-                'fullName' => $donor->getUser()->getName(),
-                'bloodType' => $donor->getBloodType(),
-                'birthdate' => $donor->getBirthdate()->format('Y-m-d'),
-                'phoneNumber' => $donor->getPhoneNumber(),
-                'cine' => $donor->getCine()
-            ];
-        }
-        return $this->render('Donors/index.html.twig', [
-            'donors' => $data
-        ]);
-
-//        return $this->json($data);
-    }
+//    #[Route('/test/donors', name :'test_donors')]
+//    public function donors(DonorProfileRepository $repo): Response
+//    {
+//        $donors = $repo->findAll();
+//        $data = [];
+//        foreach ($donors as $donor) {
+//            $data[] = [
+//                'id' => $donor->getId(),
+//                'userEmail' => $donor->getUser()->getEmail(),
+//                'fullName' => $donor->getUser()->getName(),
+//                'bloodType' => $donor->getBloodType(),
+//                'birthdate' => $donor->getBirthdate()->format('Y-m-d'),
+//                'phoneNumber' => $donor->getPhoneNumber(),
+//                'cine' => $donor->getCine()
+//            ];
+//        }
+//        return $this->render('Donors/index.html.twig', [
+//            'donors' => $data
+//        ]);
+//
+////        return $this->json($data);
+//    }
 
     // our donations
     #[Route('/test/donations', name :'test_donations')]

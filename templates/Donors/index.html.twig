@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1 class="mb-4">Donors</h1>
-
+    <a href="{{ path('donors_add') }}" class="btn btn-secondary mt-3">Add Donor</a>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
         <tr>
@@ -14,6 +14,7 @@
             <th>Blood Type</th>
             <th>Cine</th>
             <th>Birthdate</th>
+            <th>actions</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +27,21 @@
                 <td>{{ donor.cine }}</td>
                 <td>
                     {{ donor.birthdate ? donor.birthdate|date('Y-m-d') : '-' }}
+                </td>
+                <td class="d-flex gap-2">
+                    <a href="{{ path('donors_edit', {'id': donor.id}) }}" class="btn btn-primary btn-sm">
+                        Edit
+                    </a>
+
+                    <form method="post"
+                          action="{{ path('donors_delete', {'id': donor.id}) }}"
+                          onsubmit="return confirm('Delete this donor?')"
+                          style="display:inline">
+
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ donor.id) }}">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+
                 </td>
             </tr>
         {% else %}
