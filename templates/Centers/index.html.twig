@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1 class="mb-4">Blood Centers</h1>
+    <a href="{{ path('centers_add') }}" class="btn btn-success mt-3">Add Center</a>
 
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
@@ -25,7 +26,18 @@
                 <td>{{ center.address }}</td>
                 <td>{{ center.phone }}</td>
                 <td>
-                    {{ center.isActive }}
+                    {{ center.isActive? 'Yes' : 'No'  }}
+                </td>
+                <td class="d-flex gap-2">
+                    <a href="{{ path('centers_edit', {'id': center.id}) }}" class="btn btn-secondary btn-sm">Edit</a>
+
+                    <form method="post"
+                          action="{{ path('centers_delete', {'id': center.id}) }}"
+                          onsubmit="return confirm('Delete this center?')"
+                          style="display:inline">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ center.id) }}">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                 </td>
             </tr>
         {% else %}

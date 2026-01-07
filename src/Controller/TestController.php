@@ -106,26 +106,26 @@ final class TestController extends AbstractController
 //    }
 
     // ohadu centers
-    #[Route('/test/centers', name :'test_centers')]
-    public function centers(BloodCenterRepository $repo): Response
-    {
-        $centers = $repo->findAll();
-        $data = [];
-        foreach ($centers as $center) {
-            $data[] = [
-                'id' => $center->getId(),
-                'name' => $center->getName(),
-                'city' => $center->getCity(),
-                'address' => $center->getAddress(),
-                'phone' => $center->getPhone(),
-                'isActive' => $center->getisActive(),
-            ];
-        }
-
-        return $this->render('Centers/index.html.twig', [
-            'centers' => $data
-        ]);
+//    #[Route('/test/centers', name :'test_centers')]
+//    public function centers(BloodCenterRepository $repo): Response
+//    {
+//        $centers = $repo->findAll();
+//        $data = [];
+//        foreach ($centers as $center) {
+//            $data[] = [
+//                'id' => $center->getId(),
+//                'name' => $center->getName(),
+//                'city' => $center->getCity(),
+//                'address' => $center->getAddress(),
+//                'phone' => $center->getPhone(),
+//                'isActive' => $center->getisActive(),
+//            ];
+//        }
+//
+//        return $this->render('Centers/index.html.twig', [
+//            'centers' => $data
+//        ]);
 
 //        return $this->json($data);
-    }
+//    }
 }
