@@ -28,8 +28,6 @@ class User
     #[ORM\Column(type: "date", nullable: true)]
     private ?\DateTime $updatedAt = null;
 
-    #[ORM\Column(nullable: false)]
-    private ?bool $isActive = true;
 
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $name = null;
@@ -108,18 +106,6 @@ class User
     public function setUpdatedAt(?\DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function isActive(): ?bool
-    {
-        return $this->isActive;
-    }
-
-    public function setIsActive(bool $isActive): static
-    {
-        $this->isActive = $isActive;
 
         return $this;
     }

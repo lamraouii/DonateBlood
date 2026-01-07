@@ -47,7 +47,6 @@ final class TestController extends AbstractController
                 'id' => $user->getId(),
                 'email' => $user->getEmail(),
                 'roles' => $user->getRoles(),
-                'isActive' => $user->isActive(),
                 'createdAt' => $user->getCreatedAt()->format('Y-m-d H:i:s'),
             ];
         }
