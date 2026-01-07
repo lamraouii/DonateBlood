@@ -12,7 +12,7 @@
         <a class="navbar-brand" href="/">Donate Blood</a>
         <div>
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="{{ path('test_users') }}">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href={{ path('users_list') }}>Users</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('test_donors') }}">Donors</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('test_donations') }}">Donations</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url('test_centers') }}">Centers</a></li>
@@ -20,6 +20,16 @@
         </div>
     </div>
 </nav>
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endfor %}
+
 
 <div class="container">
     {% block body %}{% endblock %}

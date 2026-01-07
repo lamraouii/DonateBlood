@@ -37,25 +37,25 @@ final class TestController extends AbstractController
     /// heres comes our projecttt
     ///
     ///
-    #[Route('/test/users', name :'test_users')]
-    public function users(UserRepository $repo): Response
-    {
-        $users = $repo->findAll();
-        $data = [];
-        foreach ($users as $user) {
-            $data[] = [
-                'id' => $user->getId(),
-                'email' => $user->getEmail(),
-                'roles' => $user->getRoles(),
-                'createdAt' => $user->getCreatedAt()->format('Y-m-d H:i:s'),
-            ];
-        }
-
-        return $this->render('Users/index.html.twig', [
-            'users' => $data
-        ]);
-//      return $this->json($data); //hadi kanet dual tet
-    }
+//    #[Route('/test/users', name :'test_users')]
+//    public function users(UserRepository $repo): Response
+//    {
+//        $users = $repo->findAll();
+//        $data = [];
+//        foreach ($users as $user) {
+//            $data[] = [
+//                'id' => $user->getId(),
+//                'email' => $user->getEmail(),
+//                'roles' => $user->getRoles(),
+//                'createdAt' => $user->getCreatedAt()->format('Y-m-d H:i:s'),
+//            ];
+//        }
+//
+//        return $this->render('Users/index.html.twig', [
+//            'users' => $data
+//        ]);
+////      return $this->json($data); //hadi kanet dual tet
+//    }
 
     // our donorss
     #[Route('/test/donors', name :'test_donors')]

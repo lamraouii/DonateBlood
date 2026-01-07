@@ -1,0 +1,21 @@
+security:
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
+
+    providers:
+        users_in_memory: { memory: null }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            lazy: true       # required for firewalls in Symfony 6+
+            provider: users_in_memory
+            # no anonymous: true
+            # we won’t handle login yet
+            # form_login or http_basic will be added later if needed
+
+    access_control: []
