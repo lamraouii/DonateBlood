@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User implements PasswordAuthenticatedUserInterface
+class User implements PasswordAuthenticatedUserInterface, UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -123,4 +123,10 @@ class User implements PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
 }

@@ -84,6 +84,11 @@ final class BloodCenterController extends AbstractController
         return $this->redirectToRoute('centers_list');
     }
 
+    #[Route('/map', name: 'centers_map')]
+    public function map(): Response
+    {
+        return $this->render('centers/map.html.twig');
+    }
 
 
 }

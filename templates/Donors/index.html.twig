@@ -1,54 +1,282 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Donors{% endblock %}
+{% block title %}donors Management - Blood Donation System{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(220,20,60,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-add {
+            background: white;
+            color: var(--primary-red);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-add:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: #f8f9fa;
+            color: var(--primary-red);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+            padding: 1rem 0.75rem;
+        }
+
+        .user-email {
+            font-weight: 500;
+            color: #2C3E50;
+        }
+
+        .blood-type-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.1rem;
+            background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+            color: white;
+        }
+
+        .date-text {
+            color: #6C757D;
+            font-size: 0.9rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .btn-edit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255,193,7,0.3);
+            color: white;
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #DC3545 0%, #C82333 100%);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(220,53,69,0.3);
+            color: white;
+        }
+
+        .delete-form {
+            margin: 0;
+            display: inline;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6C757D;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .stats-bar {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stats-bar .stat {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .stats-bar .stat i {
+            color: var(--primary-red);
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .table-container {
+                padding: 1rem;
+                overflow-x: auto;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .action-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <h1 class="mb-4">Donors</h1>
-    <a href="{{ path('donors_add') }}" class="btn btn-secondary mt-3">Add Donor</a>
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>User Email</th>
-            <th>Full Name</th>
-            <th>Blood Type</th>
-            <th>Cine</th>
-            <th>Birthdate</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for donor in donors %}
-            <tr>
-                <td>{{ donor.id }}</td>
-                <td>{{ donor.userEmail }}</td>
-                <td>{{ donor.fullName}}</td>
-                <td>{{ donor.bloodType }}</td>
-                <td>{{ donor.cine }}</td>
-                <td>
-                    {{ donor.birthdate ? donor.birthdate|date('Y-m-d') : '-' }}
-                </td>
-                <td class="d-flex gap-2">
-                    <a href="{{ path('donors_edit', {'id': donor.id}) }}" class="btn btn-primary btn-sm">
-                        Edit
-                    </a>
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>
+            <i class="bi bi-person-hearts"></i>
+            Donors Management
+        </h1>
+        <a href="{{ path('donors_add') }}" class="btn btn-add">
+            <i class="bi bi-person-plus-fill me-2"></i>Add New donor
+        </a>
+    </div>
 
-                    <form method="post"
-                          action="{{ path('donors_delete', {'id': donor.id}) }}"
-                          onsubmit="return confirm('Delete this donor?')"
-                          style="display:inline">
+    <!-- Statistics Bar -->
+    <div class="stats-bar">
+        <div class="stat">
+            <i class="bi bi-person-check-fill"></i>
+            <span>Total Donors: <strong>{{ donors|length }}</strong></span>
+        </div>
+    </div>
 
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ donor.id) }}">
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-
-                </td>
-            </tr>
+    <!-- Donors Table -->
+    <div class="table-container">
+        {% if donors|length > 0 %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th style="width: 8%;">ID</th>
+                        <th style="width: 25%;">Email</th>
+                        <th style="width: 15%;">Blood Type</th>
+                        <th style="width: 18%;">Cine</th>
+                        <th style="width: 18%;">Birthday</th>
+                        <th style="width: 16%;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for donor in donors %}
+                        <tr>
+                            <td><strong>#{{ donor.id }}</strong></td>
+                            <td>
+                                <i class="bi bi-envelope me-2 text-muted"></i>
+                                <span class="user-email">{{ donor.userEmail }}</span>
+                            </td>
+                            <td><span class="blood-type-badge">{{ donor.bloodType }}</span</td>
+                            <td>{{ donor.cine }} </td>
+                            <td>
+                                <i class="bi bi-calendar3 me-1 text-muted"></i>
+                                <span class="date-text">
+                                        {{ donor.birthdate ? donor.birthdate|date('M d, Y') : 'N/A' }}
+                                    </span>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="{{ path('donors_edit', {'id': donor.id}) }}" class="btn btn-edit">
+                                        <i class="bi bi-pencil-fill me-1"></i>Edit
+                                    </a>
+                                    <form method="post" action="{{ path('donors_delete', {'id': donor.id}) }}"
+                                          onsubmit="return confirm('Are you sure you want to delete this donor?');"
+                                          class="delete-form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete_donor_' ~ donor.id) }}">
+                                        <button type="submit" class="btn btn-delete">
+                                            <i class="bi bi-trash-fill me-1"></i>Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="5" class="text-center">No donors found.</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="empty-state">
+                <i class="bi bi-people"></i>
+                <h4>No Donors Found</h4>
+                <p class="mb-3">Start by adding your first donor to the system.</p>
+                <a href="{{ path('donations_add') }}" class="btn btn-primary">
+                    <i class="bi bi-person-plus-fill me-2"></i>Add First Donor
+                </a>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

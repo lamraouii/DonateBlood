@@ -4,7 +4,10 @@ security:
             algorithm: auto
 
     providers:
-        users_in_memory: { memory: null }
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email  # <-- must match getUserIdentifier()
 
     firewalls:
         dev:
@@ -13,9 +16,12 @@ security:
 
         main:
             lazy: true       # required for firewalls in Symfony 6+
-            provider: users_in_memory
-            # no anonymous: true
-            # we won’t handle login yet
-            # form_login or http_basic will be added later if needed
-
+            provider: app_user_provider
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: dashboard
+            logout:
+                path: logout
+                target: landing_page
     access_control: []

@@ -1,63 +1,289 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Dashboard - Blood Donation System{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--dark-red) 0%, var(--primary-red) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(220,20,60,0.2);
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        .dashboard-header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.95;
+            font-size: 1.1rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .stat-card.donors {
+            border-left-color: #DC143C;
+        }
+
+        .stat-card.donations {
+            border-left-color: #28A745;
+        }
+
+        .stat-card.centers {
+            border-left-color: #007BFF;
+        }
+
+        .stat-card.active {
+            border-left-color: #FFC107;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card.donors .stat-icon {
+            background: rgba(220,20,60,0.1);
+            color: #DC143C;
+        }
+
+        .stat-card.donations .stat-icon {
+            background: rgba(40,167,69,0.1);
+            color: #28A745;
+        }
+
+        .stat-card.centers .stat-icon {
+            background: rgba(0,123,255,0.1);
+            color: #007BFF;
+        }
+
+        .stat-card.active .stat-icon {
+            background: rgba(255,193,7,0.1);
+            color: #FFC107;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #6C757D;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2C3E50;
+            margin: 2.5rem 0 1.5rem 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-red);
+            display: inline-block;
+        }
+
+        .blood-type-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(220,20,60,0.2);
+        }
+
+        .quantity-badge {
+            background: #28A745;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6C757D;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stat-card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <h1>Dashboard</h1>
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <h1><i class="bi bi-speedometer2 me-2"></i>Dashboard</h1>
+        <p>Overview of blood donation system metrics and analytics</p>
+    </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Donors</h5>
-                    <p class="card-text">{{ totalDonors }}</p>
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card donors">
+                <div class="stat-icon">
+                    <i class="bi bi-person-hearts"></i>
                 </div>
+                <div class="stat-label">Total Donors</div>
+                <div class="stat-value">{{ totalDonors }}</div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Donations</h5>
-                    <p class="card-text">{{ totalDonations }}</p>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card donations">
+                <div class="stat-icon">
+                    <i class="bi bi-droplet-half"></i>
                 </div>
+                <div class="stat-label">Total Donations</div>
+                <div class="stat-value">{{ totalDonations }}</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card centers">
+                <div class="stat-icon">
+                    <i class="bi bi-hospital"></i>
+                </div>
+                <div class="stat-label">Active Centers</div>
+                <div class="stat-value">{{ centerMap|length }}</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card active">
+                <div class="stat-icon">
+                    <i class="bi bi-activity"></i>
+                </div>
+                <div class="stat-label">Blood Types</div>
+                <div class="stat-value">{{ bloodStock|length }}</div>
             </div>
         </div>
     </div>
 
-    <h3>Blood Stock by Type</h3>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Blood Type</th>
-            <th>Quantity</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for stock in bloodStock %}
-            <tr>
-                <td>{{ stock.bloodType }}</td>
-                <td>{{ stock.total }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <!-- Blood Stock Section -->
+    <h2 class="section-title"><i class="bi bi-droplet-fill me-2"></i>Blood Stock by Type</h2>
 
-    <h3>Donations per Center</h3>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Center</th>
-            <th>Number of Donations</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for d in donationsPerCenter %}
-            <tr>
-                <td>{{ centerMap[d.centerId] ?? 'Unknown' }}</td>
-                <td>{{ d.total }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-container">
+        {% if bloodStock|length > 0 %}
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th style="width: 50%;">Blood Type</th>
+                        <th style="width: 50%;">Available Quantity</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for stock in bloodStock %}
+                        <tr>
+                            <td>
+                                <span class="blood-type-badge">{{ stock.bloodType }}</span>
+                            </td>
+                            <td>
+                                    <span class="quantity-badge">
+                                        <i class="bi bi-clipboard-data me-1"></i>{{ stock.total }} units
+                                    </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <i class="bi bi-inbox"></i>
+                <p class="mb-0">No blood stock data available</p>
+            </div>
+        {% endif %}
+    </div>
 
+    <!-- Donations per Center Section -->
+    <h2 class="section-title"><i class="bi bi-bar-chart-fill me-2"></i>Donations per Center</h2>
+
+    <div class="table-container">
+        {% if donationsPerCenter|length > 0 %}
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th style="width: 60%;">Center Name</th>
+                        <th style="width: 40%;">Number of Donations</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for d in donationsPerCenter %}
+                        <tr>
+                            <td>
+                                <i class="bi bi-hospital text-primary me-2"></i>
+                                <strong>{{ centerMap[d.centerId] ?? 'Unknown Center' }}</strong>
+                            </td>
+                            <td>
+                                    <span class="badge bg-success" style="font-size: 0.95rem; padding: 0.5rem 1rem;">
+                                        {{ d.total }} donations
+                                    </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <i class="bi bi-inbox"></i>
+                <p class="mb-0">No donation data available for centers</p>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -1,0 +1,289 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome - Blood Donation System{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .hero-section {
+            min-height: 75vh;
+            background: linear-gradient(135deg, #FFF5F7 0%, #FFE0E6 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 2rem 0;
+            padding: 3rem 0;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(220,20,60,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(220,20,60,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #2C3E50;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-tagline {
+            font-size: 1.75rem;
+            color: var(--primary-red);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats-section {
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-red);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 4px 15px rgba(220,20,60,0.2);
+        }
+
+        .stat-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .stat-title {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-grid {
+            margin: 4rem 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--light-red) 0%, #FFD6DC 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-icon-box i {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+        }
+
+        .feature-item h4 {
+            color: #2C3E50;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.4rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to Blood Donation System</h1>
+                <p class="hero-tagline">
+                    <i class="bi bi-heart-pulse-fill me-2"></i>Save Lives - Donate Blood
+                </p>
+                <p class="hero-description">
+                    Join our community of lifesavers and make a real difference. Every donation counts
+                    and can save up to three lives. Register today and become a hero in someone's story.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                    <a href="{{ path('register') }}" class="btn btn-primary btn-lg">
+                        <i class="bi bi-person-plus-fill me-2"></i>Sign Up
+                    </a>
+                    <a href="{{ path('login') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="stats-section">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h3 class="stat-title">Total Donors</h3>
+                    <p class="stat-number">{{ totalDonors ?? '1,250' }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-droplet-fill"></i>
+                    </div>
+                    <h3 class="stat-title">Total Donations</h3>
+                    <p class="stat-number">{{ totalDonations ?? '3,840' }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="bi bi-hospital-fill"></i>
+                    </div>
+                    <h3 class="stat-title">Blood Centers</h3>
+                    <p class="stat-number">{{ totalCenters ?? '48' }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="feature-grid">
+        <div class="row g-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-droplet-half"></i>
+                    </div>
+                    <h4>Easy Donation</h4>
+                    <p>Simple and quick donation process with our streamlined system</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <h4>Find Centers</h4>
+                    <p>Locate nearby donation centers in your area easily</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-calendar-check-fill"></i>
+                    </div>
+                    <h4>Track History</h4>
+                    <p>Monitor your donation records and contribution impact</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature-item">
+                    <div class="feature-icon-box">
+                        <i class="bi bi-shield-fill-check"></i>
+                    </div>
+                    <h4>Safe & Secure</h4>
+                    <p>Your personal data is protected with highest security</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
