@@ -183,6 +183,31 @@
                 padding: 1.5rem 0;
                 margin-top: auto;
             }
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-image: url('{{ asset('images/wallpaper.jpg') }}');
+                background-size: cover;
+                background-position: center center;
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                image-rendering: -webkit-optimize-contrast; /* Better quality */
+                image-rendering: crisp-edges;
+            }
+
+            /* Optional: Add a semi-transparent overlay so content is readable */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.85);
+                z-index: -1;
+            }
 
             @media (max-width: 768px) {
                 .navbar-brand {
